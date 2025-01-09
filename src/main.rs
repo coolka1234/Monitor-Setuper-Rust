@@ -1,7 +1,7 @@
 use std::process::{Child, Command, Output, Stdio};
 
 fn main() {
-
+    print!("{}",get_monitor_ids())
 }
 
 fn get_monitor_ids()->String{
@@ -13,6 +13,7 @@ fn get_monitor_ids()->String{
     //     Ok(child) => child,
     //     Err(_) => Child() 
     // };
-    let placeholde=    String::from("placeholder");
-    return placeholde;
+    let Output{stdout,..}=xrandr_query.wait_with_output().unwrap();
+    let xrandr_output=String::from_utf8_lossy(&stdout);
+    return xrandr_output.to_string();
 }

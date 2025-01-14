@@ -18,6 +18,14 @@ fn get_monitor_ids()->String{
     return xrandr_output.to_string();
 }
 
-// fn find_tags_of_monitors(input: String)->String{
+fn find_tags_of_monitors(input: String)->String{
+    let greped_lines = Command::new("/usr/bin/grep")
+        .arg("-w")
+        .arg(input)
+        .spawn()
+        .expect("Failed to execute grep query.
+        Make sure you have an up to date grep command.");
+    let Output{stdout,..}=greped_lines.wait_with_output().unwrap();
+    let tag_lines=String::from_utf8_lossy(&stdout);
 
-// }
+}

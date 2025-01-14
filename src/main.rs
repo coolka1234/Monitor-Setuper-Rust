@@ -1,7 +1,9 @@
 use std::process::{Child, Command, Output, Stdio};
 
 fn main() {
-    print!("{}",get_monitor_ids())
+    let entire_xrandr=get_monitor_ids();
+    print!("Entire output: {}",entire_xrandr);
+    print!("Tag lines: {}", find_tags_of_monitors(entire_xrandr));
 }
 
 fn get_monitor_ids()->String{
@@ -27,5 +29,6 @@ fn find_tags_of_monitors(input: String)->String{
         Make sure you have an up to date grep command.");
     let Output{stdout,..}=greped_lines.wait_with_output().unwrap();
     let tag_lines=String::from_utf8_lossy(&stdout);
+    return tag_lines.to_string();
 
 }

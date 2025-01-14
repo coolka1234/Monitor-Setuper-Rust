@@ -17,3 +17,7 @@ fn get_monitor_ids()->String{
     let xrandr_output=String::from_utf8_lossy(&stdout);
     return xrandr_output.to_string();
 }
+
+// fn find_tags_of_monitors(input: String)->String{
+
+// }
